@@ -15,8 +15,8 @@
                         </div>
                     </div>
               </th>
-              <td>
-                <label class="form-group" style="text-align:left" pInputText [(ngModel)]="loan.interestRate" name="interestrate" #interestrate="ngModel">Interest Rate : {{loan.interestRate | percent}}</label>
+              <td class="form-group" *ngIf="pastCalculation">
+                <label style="text-align:left" [(ngModel)]="loan.interestRate"  class="form-control" name="interestRate" #interestRate="ngModel" ngDefaultControl>Interest Rate : {{loan.interestRate | percent}}</label>
               </td>
             </tr>
             <tr>
@@ -35,13 +35,13 @@
                   <button (click)="onReset()" type="reset" [disabled]="!loanForm.form.valid">Reset</button>
                 </div>
               </th>
-              <td>
-                <label style="text-align:left" pInputText [(ngModel)]="loan.monthlyPayment" name="monthlyPayment" #monthlyPayment="ngModel">Monthly Payment : {{loan.monthlyPayment}} {{loan.paymentCurrency}}</label>
+              <td *ngIf="pastCalculation">
+                <label style="text-align:left" [(ngModel)]="loan.monthlyPayment" class="form-control" name="monthlyPayment" #monthlyPayment="ngModel" ngDefaultControl>Monthly Payment : {{loan.monthlyPayment}} {{loan.paymentCurrency}}</label>
               </td>
             </tr>
             <tr>
-              <td>
-                  <label style="text-align:left" pInputText [(ngModel)]="loan.numberOfPayments" name="numberOfPayments" #numberOfPayments="ngModel">Number Of Payments : {{loan.numberOfPayments}}</label>
+              <td *ngIf="pastCalculation">
+                  <label style="text-align:left" [(ngModel)]="loan.numberOfPayments"  class="form-control"name="numberOfPayments" #numberOfPayments="ngModel" ngDefaultControl>Number Of Payments : {{loan.numberOfPayments}}</label>
               </td>
             </tr>
         </table>

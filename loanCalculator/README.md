@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
 
+# Clone the project
+
+Run `git clone https://github.com/surabhiBeri/projects.git` to clone the required project.
+
 ## Navigate to the project downloaded
 
 Run `cd downloads\loanCalculator` in command prompt.
