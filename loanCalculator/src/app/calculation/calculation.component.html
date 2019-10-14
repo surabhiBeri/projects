@@ -1,70 +1,69 @@
-<div style="text-align: center">
-  <h3>Loan Calculator</h3>
-</div>
-<form class="form-horizontal" #loanForm="ngForm">
-    <div class="form-group" style="text-align: center">
-        <table align="center" style="width:50%">
-            <tr>
-              <th>
-                  <div class="form-group" style="text-align: center">
-                      <label style="text-align:center">Loan Amount : {{loan.amount | currency:'USD':'code'}} </label>
-                        <div>
-                          500
-                          <input type="range" min="500" max="5000" class="form-control" name="amount" [(ngModel)]="loan.amount" #amount="ngModel" required>
-                          5000
-                        </div>
-                    </div>
-              </th>
-              <td class="form-group" *ngIf="pastCalculation">
-                <label style="text-align:left" [(ngModel)]="loan.interestRate"  class="form-control" name="interestRate" #interestRate="ngModel" ngDefaultControl>Interest Rate : {{loan.interestRate | percent}}</label>
-              </td>
-            </tr>
-            <tr>
-              <th rowspan="2">
-                  <div class="form-group" style="text-align: center">
-                      <label style="text-align:left">Loan Duration : {{loan.duration}} months</label>
-                        <div>
-                          6
-                          <input type="range" min="6" max="24" class="form-control" name="duration" #duration="ngModel" [(ngModel)]="loan.duration" required>
-                          24
-                        </div>
-                    </div>
-                    <br />
-                 <div class="form-group" style="text-align: center"> 
-                  <button (click)="onSubmit()" class="btn btn-primary" [disabled]="!loanForm.form.valid"> Calculate </button>
-                  <button (click)="onReset()" type="reset" [disabled]="!loanForm.form.valid">Reset</button>
-                </div>
-              </th>
-              <td *ngIf="pastCalculation">
-                <label style="text-align:left" [(ngModel)]="loan.monthlyPayment" class="form-control" name="monthlyPayment" #monthlyPayment="ngModel" ngDefaultControl>Monthly Payment : {{loan.monthlyPayment}} {{loan.paymentCurrency}}</label>
-              </td>
-            </tr>
-            <tr>
-              <td *ngIf="pastCalculation">
-                  <label style="text-align:left" [(ngModel)]="loan.numberOfPayments"  class="form-control"name="numberOfPayments" #numberOfPayments="ngModel" ngDefaultControl>Number Of Payments : {{loan.numberOfPayments}}</label>
-              </td>
-            </tr>
-        </table>
-    </div>
-<br/>
-<br/>
-<div *ngIf="pastCalculation">
-    <table align="center">
-        <thead>
-          <tr>
-            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-          </tr>
-        </thead>
-        <tbody> 
-          <tr *ngFor="let el of localArray">
-            <td align="center">{{el.amount}} {{el.monthlyPaymentCurrency}}</td>
-            <td align="center">{{el.duration}}</td>
-            <td align="center">{{el.interestRate}}</td>
-            <td align="center">{{el.monthlyPaymentAmount}} {{el.monthlyPaymentCurrency}}</td>
-            <td align="center">{{el.numberOfPayments}}</td>
-          </tr>
-        </tbody>
-      </table>
-</div>
-
-</form>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div style="text-align: center">
+            <h3>Loan Calculator</h3>
+          </div>
+          <form class="form-horizontal" #loanForm="ngForm">
+              <div class="form-group" style="text-align: center">
+                  <table align="center" style="width:50%">
+                      <tr>
+                        <th>
+                            <div class="form-group" style="text-align: center">
+                                <label style="text-align:center">Loan Amount : {{loan.amount | currency:'USD':'code'}} </label>
+                                  <div>
+                                    500
+                                    <input type="range" min="500" max="5000" class="form-control" name="amount" [(ngModel)]="loan.amount" #amount="ngModel" required>
+                                    5000
+                                  </div>
+                              </div>
+                        </th>
+                        <td class="form-group" *ngIf="pastCalculation">
+                          <label style="text-align:left" [(ngModel)]="loan.interestRate"  class="form-control" name="interestRate" #interestRate="ngModel" ngDefaultControl>Interest Rate : {{loan.interestRate | percent}}</label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th rowspan="2">
+                            <div class="form-group" style="text-align: center">
+                                <label style="text-align:left">Loan Duration : {{loan.duration}} months</label>
+                                  <div>
+                                    6
+                                    <input type="range" min="6" max="24" class="form-control" name="duration" #duration="ngModel" [(ngModel)]="loan.duration" required>
+                                    24
+                                  </div>
+                              </div>
+                              <br />
+                           <div class="form-group" style="text-align: center"> 
+                            <button (click)="onSubmit()" class="btn btn-primary" [disabled]="!loanForm.form.valid"> Calculate </button>
+                            <button (click)="onReset()" type="reset" [disabled]="!loanForm.form.valid">Reset</button>
+                          </div>
+                        </th>
+                        <td rowspan="2" *ngIf="pastCalculation">
+                          <label style="text-align:left" [(ngModel)]="loan.monthlyPayment" class="form-control" name="monthlyPayment" #monthlyPayment="ngModel" ngDefaultControl>Monthly Payment : {{loan.paymentCurrency}} {{loan.monthlyPayment}}</label>
+                        </td>
+                  </table>
+              </div>
+          <br/>
+          <br/>
+          <div *ngIf="pastCalculation">
+              <table align="center">
+                  <thead>
+                    <tr>
+                      <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                    </tr>
+                  </thead>
+                  <tbody> 
+                    <tr *ngFor="let el of localArray">
+                      <td align="center">{{el.monthlyPaymentCurrency}} {{el.amount}}</td>
+                      <td align="center">{{el.duration}}</td>
+                      <td align="center">{{el.interestRate | percent}}</td>
+                      <td align="center"> {{el.monthlyPaymentCurrency}} {{el.monthlyPaymentAmount}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+          </form>          
+    </body>
+</html>

@@ -17,7 +17,7 @@ export class CalculationComponent implements OnInit {
   reset=true;
   pastCalculation: boolean;
   
-  headElements = ['Loan Amount', 'Loan Duration', 'Interest Rate', 'Monthly Payment','Number Of Payments'];
+  headElements = ['Loan Amount', 'Loan Duration', 'Interest Rate', 'Monthly Payment'];
   constructor(public configService: LoanService) { 
   }
   onSubmit(){
@@ -30,15 +30,14 @@ export class CalculationComponent implements OnInit {
            this.loan.interestRate=this.result.interestRate;
            this.loan.monthlyPayment=this.result.monthlyPayment.amount;
            this.loan.paymentCurrency=this.result.monthlyPayment.currency;
-           this.loan.numberOfPayments=this.result.numPayments;  
 
            if(localStorage.getItem("history") == null || localStorage.getItem("history") == undefined ){
-            this.localArray.push(    {amount: this.loan.amount, duration: this.loan.duration, interestRate: this.result.interestRate, monthlyPaymentAmount: this.result.monthlyPayment.amount, monthlyPaymentCurrency: this.result.monthlyPayment.currency,numberOfPayments:this.result.numPayments});
+            this.localArray.push(    {amount: this.loan.amount, duration: this.loan.duration, interestRate: this.result.interestRate, monthlyPaymentAmount: this.result.monthlyPayment.amount, monthlyPaymentCurrency: this.result.monthlyPayment.currency});
             localStorage.setItem("history", JSON.stringify(this.localArray));
            }
            else{ 
             this.localArray =  JSON.parse(localStorage.getItem("history"));  
-            this.localArray.push( {amount: this.loan.amount, duration: this.loan.duration, interestRate: this.result.interestRate, monthlyPaymentAmount: this.result.monthlyPayment.amount, monthlyPaymentCurrency: this.result.monthlyPayment.currency,numberOfPayments:this.result.numPayments}); 
+            this.localArray.push( {amount: this.loan.amount, duration: this.loan.duration, interestRate: this.result.interestRate, monthlyPaymentAmount: this.result.monthlyPayment.amount, monthlyPaymentCurrency: this.result.monthlyPayment.currency}); 
             localStorage.setItem("history", JSON.stringify(this.localArray)); 
            }
          } 

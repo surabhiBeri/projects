@@ -4,5 +4,4 @@ export class Loan {
     public interestRate: number;
     public paymentCurrency: string;
     public monthlyPayment: number;
-    public numberOfPayments: number;
 }
